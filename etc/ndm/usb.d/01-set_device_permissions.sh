@@ -1,13 +1,16 @@
 #!/bin/sh
 
-# Установка прав на устройства при подключении к USB порту
-
-# Set sandbox folder
+PATH=/opt/bin:/opt/sbin:/sbin:/bin:/usr/sbin:/usr/bin
 CHROOT_DIR=/opt/debian
+DEVICE_PATH=$CHROOT_DIR/dev/$usb_devname
 
-# Set chmod to device on connect
-if [ "$1" == start ] && [ "$usb_devname" != "" ]; then
-	FILE="$CHROOT_DIR/dev/$usb_devname"
-	#echo "$FILE"
-	chmod 777 $FILE
+# On device connected and it's has a name
+if [[ "$1" == "start" ]] && [[ "$usb_devname" != "" ]]; then
+	echo "Changing chmod on device: $DEVICE_PATH"
+	chmod 0755 $DEVICE_PATH
+fi
+
+# On device disconnect
+if [[ "$1" == "stop" ]]; then
+	echo "Device unconnected. Nothing to do!" 
 fi
