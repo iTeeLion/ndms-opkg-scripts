@@ -1,6 +1,4 @@
-# KeeneticOS-opkg
-
-Scripts for KeeneticOS (NDMS) opkg system
+# Scripts for ndms opkg system (now it's KeeneticOS)
 
 ## List of scripts
 
